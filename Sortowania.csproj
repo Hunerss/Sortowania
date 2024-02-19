@@ -1,10 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images\background.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="rescources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\background.png" />
+  </ItemGroup>
 
 </Project>
