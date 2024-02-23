@@ -27,6 +27,9 @@ namespace Sortowania.windows.pages
         {
             window = win;
             InitializeComponent();
+            min.Text = "-10";
+            max.Text = "10";
+            fre.Text = "1";
             FillBefore();
         }
 
@@ -49,7 +52,7 @@ namespace Sortowania.windows.pages
 
         private void Display(object sender, TextChangedEventArgs e)
         {
-            Console.WriteLine(min.Text + " " + fre.Text + " " + max.Text + " ");
+            Console.WriteLine(min.Text + " " + fre.Text + " " + max.Text);
             //    if (Check(min.Text) && Check(fre.Text) && Check(max.Text))
             //        FillBefore();
             //    else
