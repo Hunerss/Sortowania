@@ -16,25 +16,19 @@ using System.Windows.Shapes;
 namespace Sortowania.windows.pages
 {
     /// <summary>
-    /// Logika interakcji dla klasy Theory.xaml
+    /// Logika interakcji dla klasy Welcome.xaml
     /// </summary>
-    public partial class Theory : UserControl
+    public partial class Welcome : UserControl
     {
         private static Main window;
 
-        public Theory(Main win)
+        public Welcome(Main win)
         {
             window = win;
             InitializeComponent();
         }
 
         private void Navigate(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)sender;
-            Console.WriteLine(btn.Name);
-        }
-
-        private void MainNavigate(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
             if (btn.Name == "theory")

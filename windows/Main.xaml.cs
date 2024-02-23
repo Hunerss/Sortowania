@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sortowania.windows.pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,12 +23,7 @@ namespace Sortowania.windows
         public Main()
         {
             InitializeComponent();
-        }
-
-        private void Navigate(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)sender;
-            Console.WriteLine(btn.Name);
+            frame.NavigationService.Navigate(new Welcome(this));
         }
     }
 }

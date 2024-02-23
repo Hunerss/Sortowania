@@ -48,7 +48,7 @@
                     <Button Name="btn_5" Grid.Row="5" Click="Navigate">
                         <TextBlock TextWrapping="Wrap" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center">Sortowanie Kubełkowe</TextBlock>
                     </Button>
-                    <Button Name="btn_6" Grid.Row="6" Click="Navigate">
+                    <Button Name="btn_6" Grid.Row="6" Click="MainNavigate">
                         <TextBlock TextWrapping="Wrap" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center">Powrót do menu</TextBlock>
                     </Button>
                 </Grid>

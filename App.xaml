@@ -14,7 +14,33 @@
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="Effect">
                     <Setter.Value>
-                        <DropShadowEffect ShadowDepth="10" Color="Gray" BlurRadius="100" Opacity="2"/>
+                        <DropShadowEffect ShadowDepth="0" Color="Gray" BlurRadius="10" Opacity="2"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="NormalTextStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Junicode"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect ShadowDepth="0" Color="Gray" BlurRadius="10" Opacity="1"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="SmallHeaderTextStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Junicode"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect ShadowDepth="0" Color="Gray" BlurRadius="10" Opacity="1"/>
                     </Setter.Value>
                 </Setter>
             </Style>
@@ -29,11 +55,11 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
                             <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="25">
-                                <Border Background="#8B735B" Opacity="0.8">
+                                <Border Background="#AEC6CF" Opacity="0.8">
                                     <Grid>
-                                        <TextBlock Text="{TemplateBinding Content}" Foreground="White">
+                                        <TextBlock Text="{TemplateBinding Content}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <TextBlock.Effect>
-                                                <DropShadowEffect ShadowDepth="0" Color="Black" BlurRadius="10" Opacity="0.9"/>
+                                                <DropShadowEffect ShadowDepth="0" Color="White" BlurRadius="10" Opacity="0.9"/>
                                             </TextBlock.Effect>
                                         </TextBlock>
                                     </Grid>

@@ -7,38 +7,10 @@
         mc:Ignorable="d"
         Title="Main" Height="450" Width="800">
     <Grid>
+        <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
+        
         <Grid.Background>
             <ImageBrush ImageSource="\images\background.png" Stretch="UniformToFill"/>
         </Grid.Background>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="4*"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Style="{StaticResource HeaderTextStyle}">Algorymty Sortujące</TextBlock>
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
-
-
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <!--<Button Style="{StaticResource BaseButtonStyle}" Grid.Row="1" MinWidth="250" FontSize="30" Height="60" Content="Wróć do menu" HorizontalAlignment="Center" VerticalContentAlignment="Center" Click="Btn_return"/>-->
-                <!--<Button Grid.Row="3" Style="{StaticResource BaseButtonStyle}"></Button>-->
-                <Button Name="theory" Grid.Row="1" Content="Teoria" Click="Navigate"/>
-                <Button Name="practice" Grid.Row="3" Content="Praktyka" Click="Navigate"/>
-            </Grid>
-
-        </Grid>
     </Grid>
 </Window>

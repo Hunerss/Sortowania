@@ -8,11 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="images\background.png" />
+    <Compile Remove="rescources\**" />
+    <EmbeddedResource Remove="rescources\**" />
+    <None Remove="rescources\**" />
+    <Page Remove="rescources\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="rescources\" />
+    <None Remove="images\background.png" />
   </ItemGroup>
 
   <ItemGroup>
