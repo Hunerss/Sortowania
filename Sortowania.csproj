@@ -22,4 +22,10 @@
     <Resource Include="images\background.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="images\notatki.txt">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
 </Project>

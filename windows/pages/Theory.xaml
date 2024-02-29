@@ -30,7 +30,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button Style="{StaticResource BaseButtonStyle}" FontSize="18" Content="Bombelkowe" Name="btn_0" Grid.Row="0" Click="Navigate"/>
+                    <Button Style="{StaticResource BaseButtonStyle}" FontSize="18" Content="Bąbelkowe" Name="btn_0" Grid.Row="0" Click="Navigate"/>
                     <Button Style="{StaticResource BaseButtonStyle}" FontSize="18" Content="Przez wybór" Name="btn_1" Grid.Row="1" Click="Navigate"/>
                     <Button Style="{StaticResource BaseButtonStyle}" FontSize="18" Content="Przez wstawienie" Name="btn_2" Grid.Row="2" Click="Navigate"/>
                     <Button Style="{StaticResource BaseButtonStyle}" FontSize="18" Content="Przez scalenie" Name="btn_3" Grid.Row="3" Click="Navigate"/>
@@ -43,9 +43,37 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="4*"/>
                     </Grid.RowDefinitions>
+
+                    <TextBlock Name="name" Style="{StaticResource SmallHeaderTextStyle}" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">Sortowanie bąbelkowe</TextBlock>
+                    <TextBlock Name="complexity" Style="{StaticResource SmallHeaderTextStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">O(n^2)</TextBlock>
+                    <ScrollViewer Grid.Row="2">
+                        <TextBlock Name="description" Style="{StaticResource NormalTextStyle}"  HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="600px" MaxHeight="200px" TextWrapping="Wrap">Polega na porównywaniu dwóch kolejnych elementów i zamianie ich kolejności, jeżeli zaburza ona porządek, w jakim się sortuje tablicę. Sortowanie kończy się, gdy podczas kolejnego przejścia nie dokonano żadnej zmiany.</TextBlock>
+                    </ScrollViewer>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="6*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" FontSize="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="Transparent" Name="left" Click="left_Click" Content="&lt;"/>
+                        <Button Grid.Column="2" FontSize="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="Transparent" Name="right" Click="left_Click" Content="&gt;"/>
+
+                        <!--<TextBlock Style="{StaticResource NormalTextStyle}"  HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="600px" MaxHeight="200px" TextWrapping="Wrap"></TextBlock>-->
+                        <ScrollViewer Grid.Column="1">
+                            <RichTextBox Style="{StaticResource NormalTextStyleR}" Background="Transparent" Name="code" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True">
+                                <FlowDocument>
+                                    <Paragraph>
+                                        <Run Text="{Binding Path=CodeText}" />
+                                    </Paragraph>
+                                </FlowDocument>
+                            </RichTextBox>
+                        </ScrollViewer>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
