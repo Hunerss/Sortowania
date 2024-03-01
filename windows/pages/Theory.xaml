@@ -47,8 +47,8 @@
                         <RowDefinition Height="4*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Name="name" Style="{StaticResource SmallHeaderTextStyle}" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">Sortowanie bąbelkowe</TextBlock>
-                    <TextBlock Name="complexity" Style="{StaticResource SmallHeaderTextStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">O(n^2)</TextBlock>
+                    <TextBlock Name="name" Style="{StaticResource SmallHeaderTextStyle}" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">Nazwa: Sortowanie bąbelkowe</TextBlock>
+                    <TextBlock Name="complexity" Style="{StaticResource SmallHeaderTextStyle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">Złożoność: O(n^2)</TextBlock>
                     <ScrollViewer Grid.Row="2">
                         <TextBlock Name="description" Style="{StaticResource NormalTextStyle}"  HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="600px" MaxHeight="200px" TextWrapping="Wrap">Polega na porównywaniu dwóch kolejnych elementów i zamianie ich kolejności, jeżeli zaburza ona porządek, w jakim się sortuje tablicę. Sortowanie kończy się, gdy podczas kolejnego przejścia nie dokonano żadnej zmiany.</TextBlock>
                     </ScrollViewer>
@@ -60,18 +60,12 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="0" FontSize="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="Transparent" Name="left" Click="left_Click" Content="&lt;"/>
-                        <Button Grid.Column="2" FontSize="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="Transparent" Name="right" Click="left_Click" Content="&gt;"/>
+                        <Button Grid.Column="0" FontSize="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="Transparent" Name="left" Click="LanguageChanging" Content="&lt;"/>
+                        <Button Grid.Column="2" FontSize="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="Transparent" Name="right" Click="LanguageChanging" Content="&gt;"/>
 
                         <!--<TextBlock Style="{StaticResource NormalTextStyle}"  HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="600px" MaxHeight="200px" TextWrapping="Wrap"></TextBlock>-->
-                        <ScrollViewer Grid.Column="1">
-                            <RichTextBox Style="{StaticResource NormalTextStyleR}" Background="Transparent" Name="code" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True">
-                                <FlowDocument>
-                                    <Paragraph>
-                                        <Run Text="{Binding Path=CodeText}" />
-                                    </Paragraph>
-                                </FlowDocument>
-                            </RichTextBox>
+                        <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Visible">
+                            <TextBlock Style="{StaticResource NormalTextStyle}" Background="Transparent" Name="code" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></TextBlock>
                         </ScrollViewer>
                     </Grid>
                 </Grid>

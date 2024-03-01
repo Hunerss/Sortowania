@@ -32,19 +32,6 @@
                 </Setter>
             </Style>
 
-            <Style x:Key="NormalTextStyleR" TargetType="RichTextBox">
-                <Setter Property="FontFamily" Value="Junicode"/>
-                <Setter Property="FontSize" Value="20"/>
-                <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Effect">
-                    <Setter.Value>
-                        <DropShadowEffect ShadowDepth="0" Color="Gray" BlurRadius="10" Opacity="1"/>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
             <Style x:Key="SmallHeaderTextStyle" TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="Junicode"/>
                 <Setter Property="FontSize" Value="30"/>
