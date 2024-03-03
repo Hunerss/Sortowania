@@ -245,7 +245,6 @@ namespace Sortowania.windows.pages
         {
             int minValue = array.Min();
             int maxValue = array.Max();
-            int offset = Math.Abs(minValue);
 
             List<int>[] buckets = new List<int>[maxValue - minValue + 1];
 
