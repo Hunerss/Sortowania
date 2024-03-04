@@ -65,7 +65,7 @@
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1.3*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Style="{StaticResource NormalTextStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">Od</TextBlock>
                             <TextBlock Style="{StaticResource NormalTextStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">Co Ile</TextBlock>
@@ -84,18 +84,19 @@
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1.3*"/>
                             </Grid.ColumnDefinitions>
                             <TextBox Name="min" TextChanged="Display" Background="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Grid.Column="0" Width="50"></TextBox>
                             <TextBox Name="fre" TextChanged="Display" Background="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Grid.Column="1" Width="50"></TextBox>
                             <TextBox Name="max" TextChanged="Display" Background="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Grid.Column="2" Width="50"></TextBox>
-                            <ComboBox Name="kie" Background="Transparent" Grid.Column="3" Width="110" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20">
+                            <ComboBox SelectionChanged="Reverse" Name="way" Background="Transparent" Grid.Column="3" Width="110" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20">
                                 <ComboBoxItem Tag="rai" Content="Rosnąco" IsSelected="True"/>
-                                <ComboBoxItem Tag="low" Content="Malejąco"/>
+                                <ComboBoxItem Tag="dec" Content="Malejąco"/>
                             </ComboBox>
-                            <ComboBox SelectionChanged="GenerateNumbers"  Name="gen" Background="Transparent" Grid.Column="4" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Margin="0 0 10 0">
-                                <ComboBoxItem Tag="los" Content="Losowe" IsSelected="True"/>
-                                <ComboBoxItem Tag="kol" Content="Kolejne"/>
+                            <ComboBox SelectionChanged="GenerateNumbers"  Name="gen" Background="Transparent" Grid.Column="4" Width="110" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Margin="0 0 10 0">
+                                <ComboBoxItem Tag="ran" Content="Losowe" IsSelected="True"/>
+                                <ComboBoxItem Tag="rai" Content="Rosnąco"/>
+                                <ComboBoxItem Tag="dec" Content="Malejąco"/>
                             </ComboBox>
                         </Grid>
                     </Border>

@@ -22,24 +22,7 @@ namespace Sortowania.windows.pages
             InitializeComponent();
             lang = 0;
             alg = 0;
-            code.Text = @"
-                static void BubbleSortAlgorithm(int[] array)
-                {
-                    int n = array.Length;
-                    for (int i = 0; i < n - 1; i++)
-                    {
-                        for (int j = 0; j < n - i - 1; j++)
-                        {
-                            if (array[j] > array[j + 1])
-                            {
-                                int temp = array[j];
-                                array[j] = array[j + 1];
-                                array[j + 1] = temp;
-                            }
-                        }
-                    }
-                }
-                ";
+            SetCodeLanguage();
         }
 
         private void Navigate(object sender, RoutedEventArgs e)
@@ -54,7 +37,7 @@ namespace Sortowania.windows.pages
                 name.Text += "bąbelkowe";
                 complexity.Text += "O(n^2)";
                 description.Text = "Polega na porównywaniu dwóch kolejnych elementów i zamianie ich kolejności, jeżeli zaburza ona porządek, w jakim się sortuje tablicę. Sortowanie kończy się, gdy podczas kolejnego przejścia nie dokonano żadnej zmiany.";
-
+                SetCodeLanguage();
             }
             else if (btnName == "btn_1")
             {
@@ -63,6 +46,7 @@ namespace Sortowania.windows.pages
                 name.Text += "przez wybór";
                 complexity.Text += "O(n^2)";
                 description.Text = "Polega na wyszukaniu elementu mającego się znaleźć na żądanej pozycji i zamianie miejscami z tym, który jest tam obecnie. Operacja jest wykonywana dla wszystkich indeksów sortowanej tablicy.";
+                SetCodeLanguage();
             }
             else if (btnName == "btn_2")
             {
@@ -71,6 +55,7 @@ namespace Sortowania.windows.pages
                 name.Text += "przez wstawianie";
                 complexity.Text += "O(n^2)";
                 description.Text = "Polega na wstawieniu elementu w miejsce na odpowiednie miejsce, zachowując przy tym porządek.";
+                SetCodeLanguage();
             }
             else if (btnName == "btn_3")
             {
@@ -79,7 +64,7 @@ namespace Sortowania.windows.pages
                 name.Text += "przez scalanie";
                 complexity.Text += "O(n * log(n))";
                 description.Text = "Polega na podzieleniu zbioru na mniejsze części, posortowaniu ich i połączeniu w jedną posortowaną całość.";
-
+                SetCodeLanguage();
             }
             else if (btnName == "btn_4")
             {
@@ -88,6 +73,7 @@ namespace Sortowania.windows.pages
                 name.Text += "szybkie";
                 complexity.Text += "O(n * log(n))";
                 description.Text = "Polega na wybraniu elemetnu 'pivot' z tablicy i podzału pozostałych elementów na dwie podtablice zależnie od tego czy są mniejsze czy większe od pivota. Następnie podtablice są sortowane rekurencyjnie. ";
+                SetCodeLanguage();
             }
             else if (btnName == "btn_5")
             {
@@ -96,6 +82,7 @@ namespace Sortowania.windows.pages
                 name.Text += "kubełkowe";
                 complexity.Text += "O(n^k)";
                 description.Text = "Polega na podzieleniu rozdzieleniu elementów tablicy do określonej liczby kubełków i sortowania każdego kubełka indywidualnie za pomocą innego algorytmu albo rekurencyjnie.";
+                SetCodeLanguage();
             }
             else
                 Console.WriteLine("Theory - Navigate - value error");
@@ -193,16 +180,16 @@ namespace Sortowania.windows.pages
                 else if (lang == 1)
                 {
                     code.Text = @"
-                    def selection_sort(arr):
-                        n = len(arr)
+                    def selection_sort(array):
+                        n = len(array)
 
                         for i in range(n):
                             min_index = i
                             for j in range(i + 1, n):
-                                if arr[j] < arr[min_index]:
+                                if array[j] < array[min_index]:
                                     min_index = j
 
-                            arr[i], arr[min_index] = arr[min_index], arr[i]
+                            array[i], array[min_index] = array[min_index], array[i]
                     ";
                     Console.WriteLine("11");
                 }
@@ -237,16 +224,16 @@ namespace Sortowania.windows.pages
                 else if (lang == 1)
                 {
                     code.Text = @"
-                    def insertion_sort(arr):
-                        for i in range(1, len(arr)):
-                            key = arr[i]
+                    def insertion_sort(array):
+                        for i in range(1, len(array)):
+                            key = array[i]
                             j = i - 1
 
-                            while j >= 0 and arr[j] > key:
-                                arr[j + 1] = arr[j]
+                            while j >= 0 and array[j] > key:
+                                array[j + 1] = array[j]
                                 j -= 1
 
-                            arr[j + 1] = key
+                            array[j + 1] = key
                     ";
                     Console.WriteLine("21");
                 }
@@ -293,11 +280,11 @@ namespace Sortowania.windows.pages
                 else if (lang == 1)
                 {
                     code.Text = @"
-                    def merge_sort(arr):
-                        if len(arr) > 1:
-                            mid = len(arr) // 2
-                            left_half = arr[:mid]
-                            right_half = arr[mid:]
+                    def merge_sort(array):
+                        if len(array) > 1:
+                            mid = len(array) // 2
+                            left_half = array[:mid]
+                            right_half = array[mid:]
 
                             merge_sort(left_half)
                             merge_sort(right_half)
@@ -306,20 +293,20 @@ namespace Sortowania.windows.pages
 
                             while i < len(left_half) and j < len(right_half):
                                 if left_half[i] < right_half[j]:
-                                    arr[k] = left_half[i]
+                                    array[k] = left_half[i]
                                     i += 1
                                 else:
-                                    arr[k] = right_half[j]
+                                    array[k] = right_half[j]
                                     j += 1
                                 k += 1
 
                             while i < len(left_half):
-                                arr[k] = left_half[i]
+                                array[k] = left_half[i]
                                 i += 1
                                 k += 1
 
                             while j < len(right_half):
-                                arr[k] = right_half[j]
+                                array[k] = right_half[j]
                                 j += 1
                                 k += 1
                     ";
@@ -333,12 +320,55 @@ namespace Sortowania.windows.pages
                 if (lang == 0)
                 {
                     code.Text = @"
+                    static void QuickSort(int[] array, int low, int high)
+                    {
+                        int i = low;
+                        int j = high;
+                        int pivot = array[(low + high) / 2];
+
+                        while (i <= j)
+                        {
+                            while (i <= j && array[i] < pivot)
+                                i++;
+
+                            while (j >= 0 && array[j] > pivot)
+                                j--;
+
+                            if (i <= j)
+                            {
+                                int temp = array[i];
+                                array[i] = array[j];
+                                array[j] = temp;
+                                i++;
+                                j--;
+                            }
+                        }
+
+                        if (low < j)
+                            QuickSort(array, low, j);
+                        if (i < high)
+                            QuickSort(array, i, high);
+                    }
                     ";
                     Console.WriteLine("40");
                 }
                 else if (lang == 1)
                 {
                     code.Text = @"
+                    def quickSort(array, low, high):
+                        if low < high:
+	                    pivot = array[high]
+   	                    i = low - 1
+ 
+	                    for j in range(low, high):
+        	                    if array[j] <= pivot:
+	                                i = i + 1
+ 	                               (array[i], array[j]) = (array[j], array[i])
+    	                    (array[i + 1], array[high]) = (array[high], array[i + 1])
+                            pi = i + 1
+
+                            quickSort(array, low, pi - 1)
+                            quickSort(array, pi + 1, high)
                     ";
                     Console.WriteLine("41");
                 }
@@ -350,7 +380,7 @@ namespace Sortowania.windows.pages
                 if (lang == 0)
                 {
                     code.Text = @"
-                    private void BucketSort(int[] array)
+                    static void BucketSort(int[] array)
                     {
                         int minValue = array.Min();
                         int maxValue = array.Max();
@@ -370,8 +400,6 @@ namespace Sortowania.windows.pages
                             foreach (int num in buckets[i])
                                 array[index++] = num;
                         }
-
-                        InsertSortedNumbers(array);
                     }
                     ";
                     Console.WriteLine("50");
@@ -379,11 +407,11 @@ namespace Sortowania.windows.pages
                 else if (lang == 1)
                 {
                     code.Text = @"
-                    def bucket_sort(arr):
-                        buckets = [[] for _ in range(len(arr))]
+                    def bucket_sort(array):
+                        buckets = [[] for _ in range(len(array))]
 
-                        for num in arr:
-                            bucket_index = int(len(arr) * num)
+                        for num in array:
+                            bucket_index = int(len(array) * num)
                             buckets[bucket_index].append(num)
 
                         for bucket in buckets:
@@ -392,7 +420,7 @@ namespace Sortowania.windows.pages
                         index = 0
                         for bucket in buckets:
                             for num in bucket:
-                                arr[index] = num
+                                array[index] = num
                                 index += 1
                     ";
                     Console.WriteLine("51");

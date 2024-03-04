@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Sortowania.windows.pages
 {
@@ -14,6 +16,8 @@ namespace Sortowania.windows.pages
 
         private static Main window;
         private static int algorithm = 0;
+        private static Boolean reversed = false;
+        private static Button clickedButton;
 
         public Practice(Main win)
         {
@@ -22,12 +26,25 @@ namespace Sortowania.windows.pages
             min.Text = "-10";
             max.Text = "10";
             fre.Text = "1";
+            clickedButton = btn_0;
             FillBefore();
+        }
+
+        private void ColorButtons(Button newButton)
+        {
+            if (clickedButton != newButton)
+            {
+                // po kolei, lepsze ostylowanie przycisków(klik i zmienia kolor), odwróćenie merge, quick i bucket, zrobienie ładnych przycisków do teorii
+                clickedButton.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(8, 174, 198, 207));
+                newButton.Background = Brushes.MistyRose;
+                clickedButton = newButton;
+            }
         }
 
         private void Navigate(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
+            ColorButtons(btn);
             algorithm = Convert.ToInt32(btn.Name.Substring(4));
             Console.WriteLine(btn.Name.Substring(4));
             Sort();
@@ -71,10 +88,13 @@ namespace Sortowania.windows.pages
             string tag = (gen.SelectedItem as ComboBoxItem)?.Tag.ToString();
             Console.WriteLine(minValue + " " + maxValue);
             Console.WriteLine(tag);
-            if (tag == "kol")
+            if (tag == "rai")
                 for (int i = minValue; i <= maxValue; i += Convert.ToInt32(fre.Text))
                     before.Text += i + " ";
-            else if (tag == "los")
+            else if (tag == "dec")
+                for (int i = maxValue; i >= minValue; i -= Convert.ToInt32(fre.Text))
+                    before.Text += i + " ";
+            else if (tag == "ran")
                 for (int i = minValue; i <= maxValue; i++)
                     before.Text += rnd.Next(minValue, maxValue) + " ";
             else
@@ -101,10 +121,8 @@ namespace Sortowania.windows.pages
         private Boolean Check(string input)
         {
             foreach (char letter in input)
-            {
                 if (Char.IsLetter(letter))
                     return false;
-            }
             return true;
         }
 
@@ -117,67 +135,102 @@ namespace Sortowania.windows.pages
             }
         }
 
-        private void SortNumbers(object sender, SelectionChangedEventArgs e)
+        private void Reverse(object sender, SelectionChangedEventArgs e)
         {
-            if (before != null)
-            {
-                before.Text = "";
-                FillBefore();
-            }
+            string tag = (way.SelectedItem as ComboBoxItem)?.Tag.ToString();
+            reversed = tag != "rai";
         }
 
-
-        private void BubbleSort(int[] array)
+        private void BubbleSort(int[] array, Boolean reverse)
         {
             int n = array.Length;
-            for (int i = 0; i < n - 1; i++)
-                for (int j = 0; j < n - i - 1; j++)
-                    if (array[j] > array[j + 1])
-                    {
-                        int temp = array[j];
-                        array[j] = array[j + 1];
-                        array[j + 1] = temp;
-                    }
+            if (reverse)
+                for (int i = 0; i < n - 1; i++)
+                    for (int j = 0; j < n - i - 1; j++)
+                        if (array[j] < array[j + 1])
+                        {
+                            int temp = array[j];
+                            array[j] = array[j + 1];
+                            array[j + 1] = temp;
+                        }
+                        else { }
+            else
+                for (int i = 0; i < n - 1; i++)
+                    for (int j = 0; j < n - i - 1; j++)
+                        if (array[j] > array[j + 1])
+                        {
+                            int temp = array[j];
+                            array[j] = array[j + 1];
+                            array[j + 1] = temp;
+                        }
             InsertSortedNumbers(array);
         }
 
-        private void SelectionSort(int[] array)
+        private void SelectionSort(int[] array, Boolean reverse)
         {
             int n = array.Length;
-            for (int i = 0; i < n - 1; i++)
-            {
-                int minIndex = i;
-                for (int j = i + 1; j < n; j++)
-                    if (array[j] < array[minIndex])
-                        minIndex = j;
-
-                int temp = array[minIndex];
-                array[minIndex] = array[i];
-                array[i] = temp;
-            }
-            InsertSortedNumbers(array);
-        }
-
-        private void InsertionSort(int[] array)
-        {
-            int n = array.Length;
-            for (int i = 1; i < n; i++)
-            {
-                int key = array[i];
-                int j = i - 1;
-
-                while (j >= 0 && array[j] > key)
+            if(reverse)
+                for (int i = 0; i < n - 1; i++)
                 {
-                    array[j + 1] = array[j];
-                    j--;
-                }
+                    int maxIndex = i;
+                    for (int j = i + 1; j < n; j++)
+                        if (array[j] > array[maxIndex])
+                            maxIndex = j;
 
-                array[j + 1] = key;
-            }
+                    int temp = array[maxIndex];
+                    array[maxIndex] = array[i];
+                    array[i] = temp;
+                }
+            else
+                for (int i = 0; i < n - 1; i++)
+                {
+                    int minIndex = i;
+                    for (int j = i + 1; j < n; j++)
+                        if (array[j] < array[minIndex])
+                            minIndex = j;
+
+                    int temp = array[minIndex];
+                    array[minIndex] = array[i];
+                    array[i] = temp;
+                }
             InsertSortedNumbers(array);
         }
 
-        private void MergeSort(int[] array)
+        private void InsertionSort(int[] array, Boolean reverse)
+        {
+            int n = array.Length;
+            if(reverse)
+                for (int i = 1; i < n; i++)
+                {
+                    int key = array[i];
+                    int j = i - 1;
+
+                    while (j >= 0 && array[j] < key)
+                    {
+                        array[j + 1] = array[j];
+                        j--;
+                    }
+
+                    array[j + 1] = key;
+                }
+            else
+                for (int i = 1; i < n; i++)
+                {
+                    int key = array[i];
+                    int j = i - 1;
+
+                    while (j >= 0 && array[j] > key)
+                    {
+                        array[j + 1] = array[j];
+                        j--;
+                    }
+
+                    array[j + 1] = key;
+                }
+            InsertSortedNumbers(array);
+        }
+
+        private void MergeSort(int[] array, Boolean reverse)
         {
             if (array.Length > 1)
             {
@@ -188,8 +241,8 @@ namespace Sortowania.windows.pages
                 Array.Copy(array, 0, left, 0, mid);
                 Array.Copy(array, mid, right, 0, array.Length - mid);
 
-                MergeSort(left);
-                MergeSort(right);
+                MergeSort(left, reverse);
+                MergeSort(right, reverse);
 
                 int i = 0, j = 0, k = 0;
 
@@ -209,11 +262,11 @@ namespace Sortowania.windows.pages
             }
         }
         
-        private void QuickSort(int[] array, int low, int high)
+        private void QuickSort(int[] array, int low, int high, Boolean reverse)
         {
-            var i = low;
-            var j = high;
-            var pivot = array[(low + high) / 2];
+            int i = low;
+            int j = high;
+            int pivot = array[(low + high) / 2];
 
             while (i <= j)
             {
@@ -234,14 +287,14 @@ namespace Sortowania.windows.pages
             }
 
             if (low < j)
-                QuickSort(array, low, j);
+                QuickSort(array, low, j, reverse);
             if (i < high)
-                QuickSort(array, i, high);
+                QuickSort(array, i, high, reverse);
 
             InsertSortedNumbers(array);
         }
 
-        private void BucketSort(int[] array)
+        private void BucketSort(int[] array, Boolean reverse)
         {
             int minValue = array.Min();
             int maxValue = array.Max();
@@ -272,22 +325,22 @@ namespace Sortowania.windows.pages
             switch (algorithm)
             {
                 case 0:
-                    BubbleSort(array);
+                    BubbleSort(array, reversed);
                     break;
                 case 1:
-                    SelectionSort(array);
+                    SelectionSort(array, reversed);
                     break;
                 case 2:
-                    InsertionSort(array);
+                    InsertionSort(array, reversed);
                     break;
                 case 3:
-                    MergeSort(array);
+                    MergeSort(array, reversed);
                     break;
                 case 4:
-                    QuickSort(array, 0, array.Length);
+                    QuickSort(array, 0, array.Length-1, reversed);
                     break;
                 case 5:
-                    BucketSort(array);
+                    BucketSort(array, reversed);
                     break;
                 default:
                     Console.WriteLine("Practice - Sort - value error");
