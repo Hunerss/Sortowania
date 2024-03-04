@@ -33,12 +33,23 @@ namespace Sortowania.windows.pages
         {
             Button btn = (Button)sender;
             ColorButtons(btn);
-            if (btn.Name == "theory")
-                window.frame.NavigationService.Navigate(new Theory(window));
-            else if (btn.Name == "practice")
-                window.frame.NavigationService.Navigate(new Practice(window));
-            else
-                window.frame.NavigationService.Navigate(new Welcome(window));
+            Console.WriteLine(btn.Name);
+            switch (btn.Name)
+            {
+                case "theory":
+                    window.frame.NavigationService.Navigate(new Theory(window));
+                    break;
+                case "practice":
+                    window.frame.NavigationService.Navigate(new Practice(window));
+                    break;
+                case "close":
+                    Window.GetWindow(this).Close();
+                    Application.Current.Shutdown();
+                    break;
+                default:
+                    window.frame.NavigationService.Navigate(new Welcome(window));
+                    break;
+            }
         }
 
         private void ColorButtons(Button newButton)

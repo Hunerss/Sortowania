@@ -34,74 +34,73 @@ namespace Sortowania.windows.pages
             ColorButtons((Button)sender);
             name.Text = "Nazwa: Sortowanie ";
             complexity.Text = "Złożoność: ";
-            if (btnName == "btn_0")
+            lang = 0;
+            switch (btnName)
             {
-                alg = 0;
-                lang = 0;
-                name.Text += "bąbelkowe";
-                complexity.Text += "O(n^2)";
-                description.Text = "Polega na porównywaniu dwóch kolejnych elementów i zamianie ich kolejności, jeżeli zaburza ona porządek, w jakim się sortuje tablicę. Sortowanie kończy się, gdy podczas kolejnego przejścia nie dokonano żadnej zmiany.";
-                SetCodeLanguage();
+                case "btn_0":
+                    alg = 0;
+                    name.Text += "bąbelkowe";
+                    complexity.Text += "O(n^2)";
+                    description.Text = "Polega na porównywaniu dwóch kolejnych elementów i zamianie ich kolejności, jeśli nie pasujądo porządku sortowania. Sortowanie kończy się, gdy podczas kolejnego przejścia nie dokonano żadnej zmiany.";
+                    SetCodeLanguage();
+                    break;
+                case "btn_1":
+                    alg = 1;
+                    name.Text += "przez wybór";
+                    complexity.Text += "O(n^2)";
+                    description.Text = "Polega na wyszukaniu elementu mającego się znaleźć na żądanej pozycji i zamianie miejscami z tym, który jest tam obecnie. Operacja jest wykonywana dla wszystkich indeksów sortowanej tablicy.";
+                    SetCodeLanguage();
+                    break;
+                case "btn_2":
+                    alg = 2;
+                    name.Text += "przez wstawianie";
+                    complexity.Text += "O(n^2)";
+                    description.Text = "Polega na wstawieniu elementu w miejsce na odpowiednie miejsce, zachowując przy tym porządek.";
+                    SetCodeLanguage();
+                    break;
+                case "btn_3":
+                    alg = 3;
+                    name.Text += "przez scalanie";
+                    complexity.Text += "O(n * log(n))";
+                    description.Text = "Bazuje na metodzie dziel i zwyciężaj. Polega na podzieleniu zbioru na dwie części, aż zostanie tylko jeden element.";
+                    SetCodeLanguage();
+                    break;
+                case "btn_4":
+                    alg = 4;
+                    name.Text += "szybkie";
+                    complexity.Text += "O(n * log(n))";
+                    description.Text = "Bazuje na metodzie dziel i zwyciężaj. Polega na wybraniu elemetnu rozdzielającego 'pivot' z tablicy i podzału pozostałych elementów na dwie podtablice zależnie od tego czy są mniejsze czy większe od pivota. Następnie podtablice są sortowane rekurencyjnie. ";
+                    SetCodeLanguage();
+                    break;
+                case "btn_5":
+                    alg = 5;
+                    name.Text += "kubełkowe";
+                    complexity.Text += "O(n^k)";
+                    description.Text = "Polega na podzieleniu rozdzieleniu elementów tablicy do określonej liczby kubełków o równej liczbie elemenó i sortowania każdego kubełka indywidualnie za pomocą innego algorytmu albo rekurencyjnie.";
+                    SetCodeLanguage();
+                    break;
+                default:
+                    Console.WriteLine("Theory - Navigate - value error");
+                    break;
             }
-            else if (btnName == "btn_1")
-            {
-                alg = 1;
-                lang = 0;
-                name.Text += "przez wybór";
-                complexity.Text += "O(n^2)";
-                description.Text = "Polega na wyszukaniu elementu mającego się znaleźć na żądanej pozycji i zamianie miejscami z tym, który jest tam obecnie. Operacja jest wykonywana dla wszystkich indeksów sortowanej tablicy.";
-                SetCodeLanguage();
-            }
-            else if (btnName == "btn_2")
-            {
-                alg = 2;
-                lang = 0;
-                name.Text += "przez wstawianie";
-                complexity.Text += "O(n^2)";
-                description.Text = "Polega na wstawieniu elementu w miejsce na odpowiednie miejsce, zachowując przy tym porządek.";
-                SetCodeLanguage();
-            }
-            else if (btnName == "btn_3")
-            {
-                alg = 3;
-                lang = 0;
-                name.Text += "przez scalanie";
-                complexity.Text += "O(n * log(n))";
-                description.Text = "Polega na podzieleniu zbioru na mniejsze części, posortowaniu ich i połączeniu w jedną posortowaną całość.";
-                SetCodeLanguage();
-            }
-            else if (btnName == "btn_4")
-            {
-                alg = 4;
-                lang = 0;
-                name.Text += "szybkie";
-                complexity.Text += "O(n * log(n))";
-                description.Text = "Polega na wybraniu elemetnu 'pivot' z tablicy i podzału pozostałych elementów na dwie podtablice zależnie od tego czy są mniejsze czy większe od pivota. Następnie podtablice są sortowane rekurencyjnie. ";
-                SetCodeLanguage();
-            }
-            else if (btnName == "btn_5")
-            {
-                alg = 5;
-                lang = 0;
-                name.Text += "kubełkowe";
-                complexity.Text += "O(n^k)";
-                description.Text = "Polega na podzieleniu rozdzieleniu elementów tablicy do określonej liczby kubełków i sortowania każdego kubełka indywidualnie za pomocą innego algorytmu albo rekurencyjnie.";
-                SetCodeLanguage();
-            }
-            else
-                Console.WriteLine("Theory - Navigate - value error");
         }
 
         private void MainNavigate(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
             ColorButtons(btn);
-            if (btn.Name == "theory")
-                window.frame.NavigationService.Navigate(new Theory(window));
-            else if (btn.Name == "practice")
-                window.frame.NavigationService.Navigate(new Practice(window));
-            else
-                window.frame.NavigationService.Navigate(new Welcome(window));
+            switch (btn.Name)
+            {
+                case "theory":
+                    window.frame.NavigationService.Navigate(new Theory(window));
+                    break;
+                case "practice":
+                    window.frame.NavigationService.Navigate(new Practice(window));
+                    break;
+                default:
+                    window.frame.NavigationService.Navigate(new Welcome(window));
+                    break;
+            }
         }
 
         private void LanguageChanging(object sender, RoutedEventArgs e)

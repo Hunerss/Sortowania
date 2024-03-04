@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sortowania.windows"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
         Title="Main" Height="500" Width="800">
     <Grid>
         <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
