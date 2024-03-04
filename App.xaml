@@ -54,17 +54,54 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="25">
-                                <Border Background="#AEC6CF" Opacity="0.8">
-                                    <Grid>
-                                        <TextBlock Text="{TemplateBinding Content}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <TextBlock.Effect>
-                                                <DropShadowEffect ShadowDepth="0" Color="White" BlurRadius="10" Opacity="0.9"/>
-                                            </TextBlock.Effect>
-                                        </TextBlock>
-                                    </Grid>
-                                </Border>
+                            <Border x:Name="border" BorderBrush="Gray" BorderThickness="2" CornerRadius="25">
+                                <Border.Background>
+                                    <SolidColorBrush Color="#AEC6CF"/>
+                                </Border.Background>
+                                <Grid>
+                                    <TextBlock Text="{TemplateBinding Content}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock.Effect>
+                                            <DropShadowEffect ShadowDepth="0" Color="White" BlurRadius="10" Opacity="0.9"/>
+                                        </TextBlock.Effect>
+                                    </TextBlock>
+                                </Grid>
                             </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#789ABE"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ClickedButtonStyle" TargetType="Button">
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="25"/>
+                    </Style>
+                </Style.Resources>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border" BorderBrush="Gray" BorderThickness="2" CornerRadius="25">
+                                <Border.Background>
+                                    <SolidColorBrush Color="#FF6666"/>
+                                </Border.Background>
+                                <Grid>
+                                    <TextBlock Text="{TemplateBinding Content}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock.Effect>
+                                            <DropShadowEffect ShadowDepth="0" Color="White" BlurRadius="10" Opacity="0.9"/>
+                                        </TextBlock.Effect>
+                                    </TextBlock>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#789ABE"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>

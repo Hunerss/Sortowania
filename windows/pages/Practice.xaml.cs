@@ -17,7 +17,7 @@ namespace Sortowania.windows.pages
         private static Main window;
         private static int algorithm = 0;
         private static Boolean reversed = false;
-        private static Button clickedButton;
+        private static Button clickedButton = new();
 
         public Practice(Main win)
         {
@@ -26,7 +26,7 @@ namespace Sortowania.windows.pages
             min.Text = "-10";
             max.Text = "10";
             fre.Text = "1";
-            clickedButton = btn_0;
+            ColorButtons(btn_0);
             FillBefore();
         }
 
@@ -34,9 +34,8 @@ namespace Sortowania.windows.pages
         {
             if (clickedButton != newButton)
             {
-                // po kolei, lepsze ostylowanie przycisków(klik i zmienia kolor), odwróćenie merge, quick i bucket, zrobienie ładnych przycisków do teorii
-                clickedButton.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(8, 174, 198, 207));
-                newButton.Background = Brushes.MistyRose;
+                clickedButton.Style = (Style)FindResource("BaseButtonStyle");
+                newButton.Style = (Style)FindResource("ClickedButtonStyle");
                 clickedButton = newButton;
             }
         }
@@ -53,6 +52,7 @@ namespace Sortowania.windows.pages
         private void MainNavigate(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
+            ColorButtons(btn);
             if (btn.Name == "theory")
                 window.frame.NavigationService.Navigate(new Theory(window));
             else if (btn.Name == "practice")
@@ -247,10 +247,16 @@ namespace Sortowania.windows.pages
                 int i = 0, j = 0, k = 0;
 
                 while (i < left.Length && j < right.Length)
-                    if (left[i] <= right[j])
-                        array[k++] = left[i++];
+                    if (!reverse)
+                        if (left[i] <= right[j])
+                            array[k++] = left[i++];
+                        else
+                            array[k++] = right[j++];
                     else
-                        array[k++] = right[j++];
+                        if (left[i] >= right[j])
+                            array[k++] = left[i++];
+                        else
+                            array[k++] = right[j++];
 
                 while (i < left.Length)
                     array[k++] = left[i++];
@@ -270,11 +276,22 @@ namespace Sortowania.windows.pages
 
             while (i <= j)
             {
-                while (i <= j && array[i] < pivot)
-                    i++;
+                if (!reverse)
+                {
+                    while (i <= j && array[i] < pivot)
+                        i++;
 
-                while (j >= 0 && array[j] > pivot)
-                    j--;
+                    while (j >= 0 && array[j] > pivot)
+                        j--;
+                }
+                else
+                {
+                    while (i <= j && array[i] > pivot)
+                        i++;
+
+                    while (j >= 0 && array[j] < pivot)
+                        j--;
+                }
 
                 if (i <= j)
                 {
@@ -296,6 +313,7 @@ namespace Sortowania.windows.pages
 
         private void BucketSort(int[] array, Boolean reverse)
         {
+            Console.WriteLine(reverse);
             int minValue = array.Min();
             int maxValue = array.Max();
 
@@ -311,10 +329,13 @@ namespace Sortowania.windows.pages
             for (int i = 0; i < buckets.Length; i++)
             {
                 buckets[i].Sort();
+                
                 foreach (int num in buckets[i])
                     array[index++] = num;
             }
 
+            if(reverse)
+                array.Reverse();
             InsertSortedNumbers(array);
         }
 

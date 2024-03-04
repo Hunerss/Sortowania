@@ -14,6 +14,8 @@ namespace Sortowania.windows.pages
         private static int lang = 0;
         private static int alg = 0;
 
+        private static Button clickedButton = new();
+
         private string CodeText { get; set; }
 
         public Theory(Main win)
@@ -22,12 +24,14 @@ namespace Sortowania.windows.pages
             InitializeComponent();
             lang = 0;
             alg = 0;
+            ColorButtons(btn_0);
             SetCodeLanguage();
         }
 
         private void Navigate(object sender, RoutedEventArgs e)
         {
             string btnName = ((Button)sender).Name;
+            ColorButtons((Button)sender);
             name.Text = "Nazwa: Sortowanie ";
             complexity.Text = "Złożoność: ";
             if (btnName == "btn_0")
@@ -91,6 +95,7 @@ namespace Sortowania.windows.pages
         private void MainNavigate(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
+            ColorButtons(btn);
             if (btn.Name == "theory")
                 window.frame.NavigationService.Navigate(new Theory(window));
             else if (btn.Name == "practice")
@@ -431,6 +436,16 @@ namespace Sortowania.windows.pages
             else
                 Console.WriteLine("Theory - SetCodeLanguage - value error");
 
+        }
+
+        private void ColorButtons(Button newButton)
+        {
+            if (clickedButton != newButton)
+            {
+                clickedButton.Style = (Style)FindResource("BaseButtonStyle");
+                newButton.Style = (Style)FindResource("ClickedButtonStyle");
+                clickedButton = newButton;
+            }
         }
     }
 }
