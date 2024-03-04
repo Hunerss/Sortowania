@@ -335,7 +335,7 @@ namespace Sortowania.windows.pages
             }
 
             if(reverse)
-                array.Reverse();
+                Array.Reverse(array);
             InsertSortedNumbers(array);
         }
 
